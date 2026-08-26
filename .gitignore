@@ -1,0 +1,42 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.der
+id_rsa
+id_ed25519
+
+# Local data and logs
+*.log
+logs/
+data/private/
+data/raw/
+backups/
+*.sqlite
+*.sqlite3
+*.db
+
+# Generated private assets
+outputs/private/
+captures/
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Dependency and build output placeholders
+node_modules/
+dist/
+build/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
