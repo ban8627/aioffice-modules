@@ -12,7 +12,7 @@ This repository is intended to hold module designs for:
 
 ## Gate Status
 
-- Gate 0 requirements review: PASS, based on `AI_Office_requirements_review_v0.1.md` v0.21.
+- Gate 0 requirements review: PASS, based on `AI_Office_requirements_review_v0.22.md`.
 - Gate 1 repository bootstrap: PASS.
 - Technology stack: approved, see `docs/adr/0001-approved-stack.md`.
 - Gate 1 implementation: in progress.
@@ -36,6 +36,6 @@ Example configuration, when later approved, must use fictional values and schema
 The current Gate 1 scope is traceable to:
 
 - `AIOffice_Gate1_Codex_handoff.md`
-- `AI_Office_requirements_review_v0.1.md` internal v0.22
+- `AI_Office_requirements_review_v0.22.md`
 
 No open source license is granted in this repository unless the owner later approves one explicitly.
