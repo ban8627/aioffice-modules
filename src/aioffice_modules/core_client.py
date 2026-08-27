@@ -29,6 +29,11 @@ class CoreClient:
         with urlopen(url, timeout=self._config.timeout_seconds) as response:
             return cast(dict[str, Any], json.loads(response.read().decode("utf-8")))
 
+    def operations_summary(self) -> dict[str, Any]:
+        url = f"{self._config.base_url}/operations/summary"
+        with urlopen(url, timeout=self._config.timeout_seconds) as response:
+            return cast(dict[str, Any], json.loads(response.read().decode("utf-8")))
+
     def submit_result(self, result: ModuleResult) -> dict[str, Any]:
         body = json.dumps(result.to_contract()).encode("utf-8")
         request = Request(
