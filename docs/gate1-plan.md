@@ -18,10 +18,11 @@
 - GitHub CLI installed: 2.98.0
 - GitHub authenticated account confirmed: `ban8627`
 - Public repository created: `https://github.com/ban8627/aioffice-modules`
+- Technology stack approved for Gate 1 implementation.
 
 ## Gate 1 Constraints
 
-- No application code before technology stack approval.
+- Application code is allowed only inside the approved Gate 1 stack.
 - No license file.
 - No secrets, personal data, portfolio data, account data, production logs, private source materials, or real environment configuration.
 - Example configuration may contain schemas and fictional placeholder values only.
@@ -29,7 +30,8 @@
 
 ## Next Steps
 
-1. Review the technology stack options in `docs/architecture-options.md`.
-2. Get explicit user approval for the selected stack.
-3. After approval, define module boundaries and interface contracts.
-4. Add tests and CI only after the approved stack determines the toolchain.
+1. Implement common module interfaces and result models.
+2. Add minimum investment, research, content, development, Core client, and PC agent interfaces.
+3. Add unit tests, type checks, style checks, and secret scanning.
+4. Add CI without deployment.
+5. Open a PR and leave it for user review.
