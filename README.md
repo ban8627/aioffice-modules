@@ -34,9 +34,15 @@ Example configuration, when later approved, must use fictional values and schema
 
 ## Source Requirements
 
-The current Gate 1 scope is traceable to:
+### Gate 1 Historical Basis
 
-- `AIOffice_Gate2_Codex_handoff.md`
+- `AI_Office_requirements_review_v0.22.md`
+- `AIOffice_Gate1_Codex_handoff.md`
+
+### Current Gate 2 Basis
+
 - `AI_Office_requirements_review_v0.23.md`
+- `AIOffice_Gate2_Codex_handoff.md`
+- `docs/gate2-plan.md`
 
 No open source license is granted in this repository unless the owner later approves one explicitly.
