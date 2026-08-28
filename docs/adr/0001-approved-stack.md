@@ -31,5 +31,6 @@ AIOffice modules need a Python-first runtime for investment analysis, general re
 
 ## References
 
-- Root requirements document: `AI_Office_requirements_review_v0.22.md`
-- Gate handoff: `AIOffice_Gate1_Codex_handoff.md`
+- Root requirements document: `AI_Office_requirements_review_v0.23.md`
+- Current Gate handoff: `AIOffice_Gate2_Codex_handoff.md`
+- Prior Gate 1 handoff: `AIOffice_Gate1_Codex_handoff.md`

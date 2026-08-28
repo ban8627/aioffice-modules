@@ -6,16 +6,9 @@ This repository covers AIOffice domain modules: investment research, general res
 
 ## Current Gate
 
-Gate 1 is active. Until the user approves a technology stack, agents may edit only:
+Gate 1 is complete and merged to `main`. Gate 2 is in investment and general research planning and provider approval preparation.
 
-- `README.md`
-- `AGENTS.md`
-- `docs/gate1-plan.md`
-- `docs/architecture-options.md`
-- `.gitignore`
-- `SECURITY.md`
-
-Do not write application code before explicit user approval.
+During Gate 2 planning, keep changes document-only unless the user explicitly approves implementation. Do not add application code, dependencies, external API calls, deployment configuration, database migrations, secrets, or real account data.
 
 ## Safety Rules
 

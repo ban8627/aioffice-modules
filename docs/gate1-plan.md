@@ -1,5 +1,9 @@
 # Gate 1 Plan
 
+## Status
+
+COMPLETE. Gate 1 was merged to `main` on 2026-08-28.
+
 ## Repository Role
 
 `ban8627/aioffice-modules` is the public repository for AIOffice domain module designs:
@@ -19,19 +23,28 @@
 - GitHub authenticated account confirmed: `ban8627`
 - Public repository created: `https://github.com/ban8627/aioffice-modules`
 - Technology stack approved for Gate 1 implementation.
+- Gate 1 foundation PR merged: `https://github.com/ban8627/aioffice-modules/pull/1`
+- Gate 1 operational foundation PR merged: `https://github.com/ban8627/aioffice-modules/pull/2`
+- Gate 1 final main SHA: `0ebddbf8ead0f779d9d03a8606f83a84c9044933`
+- Main CI passed: `https://github.com/ban8627/aioffice-modules/actions/runs/33164366281`
 
-## Gate 1 Constraints
+## Completed Scope
 
-- Application code is allowed only inside the approved Gate 1 stack.
-- No license file.
-- No secrets, personal data, portfolio data, account data, production logs, private source materials, or real environment configuration.
-- Example configuration may contain schemas and fictional placeholder values only.
-- Investment order execution is out of scope.
+- Common Python interfaces and Markdown/JSON result models were implemented.
+- Minimum investment, general research, content/design, development/GitHub, Core client, and Windows PC agent interfaces were implemented.
+- Core client and PC agent contract tests were added.
+- DB direct access is absent from module code and remains prohibited.
+- CI runs pytest, mypy, ruff, and secret scan.
 
-## Next Steps
+## Gate 1 Constraints Confirmed
 
-1. Implement common module interfaces and result models.
-2. Add minimum investment, research, content, development, Core client, and PC agent interfaces.
-3. Add unit tests, type checks, style checks, and secret scanning.
-4. Add CI without deployment.
-5. Open a PR and leave it for user review.
+- No license file was added.
+- No secrets, personal data, portfolio data, account data, production logs, private source materials, or real environment configuration were added.
+- No external API or AI provider was connected.
+- No Cloudflare or Supabase account connection was configured.
+- No database migration was run.
+- No investment order execution was implemented.
+
+## Next Step
+
+Gate 2 is limited to investment and general research planning, provider comparison, and user approval preparation before any implementation starts.
