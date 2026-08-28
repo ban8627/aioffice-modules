@@ -54,3 +54,20 @@ def test_submit_result_posts_to_module_results_with_core_contract(
     assert captured["headers"]["Content-type"] == "application/json"
     assert captured["timeout"] == 10.0
     assert captured["body"] == result.to_contract()
+
+
+def test_operations_summary_uses_core_dashboard_contract(monkeypatch: Any) -> None:
+    captured: dict[str, Any] = {}
+
+    def fake_urlopen(url: str, timeout: float) -> FakeResponse:
+        captured["url"] = url
+        captured["timeout"] = timeout
+        return FakeResponse()
+
+    monkeypatch.setattr("aioffice_modules.core_client.urlopen", fake_urlopen)
+
+    response = CoreClient(CoreClientConfig(base_url="https://core.test")).operations_summary()
+
+    assert response["accepted"] is True
+    assert captured["url"] == "https://core.test/operations/summary"
+    assert captured["timeout"] == 10.0
