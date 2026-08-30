@@ -8,7 +8,7 @@ This repository covers AIOffice domain modules: investment research, general res
 
 Gate 2 research contracts and the deterministic mock pipeline are complete and merged to `main`.
 
-Gate 3 planning covers provider-neutral boundaries for FRED, Bank of Korea ECOS, and OpenDART. The current Gate 3 checkpoint is document-only. Do not add live provider clients, credentials, dependencies, external API calls, database access, deployment configuration, or real data until the applicable implementation and credential approvals are recorded.
+Gate 3B adds provider-neutral contracts and deterministic mock adapters for FRED, Bank of Korea ECOS, and OpenDART. Do not add live provider clients, credentials, dependencies, external API calls, database access, deployment configuration, or real data until the applicable implementation and credential approvals are recorded.
 
 ## Safety Rules
 

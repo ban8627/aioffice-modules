@@ -17,7 +17,7 @@ This repository is intended to hold module designs for:
 - Technology stack: approved, see `docs/adr/0001-approved-stack.md`.
 - Gate 1 implementation: COMPLETE, merged to main on 2026-08-28.
 - Gate 2 research implementation: COMPLETE, merged to main on 2026-08-30.
-- Gate 3 official economic and disclosure data planning: in progress, see `docs/gate3-plan.md`.
+- Gate 3B provider-neutral official-data mock checkpoint: complete, see `docs/gate3-plan.md`.
 
 ## Public Repository Safety
 
