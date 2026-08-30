@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aioffice.local/schemas/research-result.schema.json",
+  "title": "ResearchResult",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "resultId", "requestId", "taskId", "status", "createdAt", "sources", "evidence", "claims", "providerOutcomes", "warnings", "usage"],
+  "properties": {
+    "schemaVersion": { "const": "aioffice.research.v1" },
+    "resultId": { "type": "string", "minLength": 1 },
+    "requestId": { "type": "string", "minLength": 1 },
+    "taskId": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["completed", "partial", "retryable", "failed"] },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "sources": { "type": "array", "items": { "$ref": "#/$defs/source" } },
+    "evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" } },
+    "claims": { "type": "array", "items": { "$ref": "#/$defs/claim" } },
+    "providerOutcomes": { "type": "array", "items": { "$ref": "#/$defs/providerOutcome" } },
+    "warnings": { "type": "array", "items": { "enum": ["stale_source", "source_conflict", "provider_rate_limited", "provider_timeout", "partial_result"] }, "uniqueItems": true },
+    "usage": { "$ref": "#/$defs/usage" }
+  },
+  "$defs": {
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["sourceId", "locator", "collectedAt", "freshness"],
+      "properties": {
+        "sourceId": { "type": "string", "minLength": 1 }, "locator": { "type": "string", "format": "uri" },
+        "publishedAt": { "type": "string", "format": "date-time" }, "collectedAt": { "type": "string", "format": "date-time" },
+        "freshness": { "enum": ["fresh", "stale", "unknown"] }
+      }
+    },
+    "evidence": {
+      "type": "object", "additionalProperties": false, "required": ["evidenceId", "sourceId", "observation", "relation"],
+      "properties": { "evidenceId": { "type": "string", "minLength": 1 }, "sourceId": { "type": "string", "minLength": 1 }, "observation": { "type": "string", "minLength": 1 }, "relation": { "enum": ["supports", "contradicts"] } }
+    },
+    "claim": {
+      "type": "object", "additionalProperties": false, "required": ["claimId", "text", "evidenceIds", "confidence"],
+      "properties": { "claimId": { "type": "string", "minLength": 1 }, "text": { "type": "string", "minLength": 1 }, "evidenceIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }, "confidence": { "enum": ["low", "medium", "high"] } }
+    },
+    "providerOutcome": {
+      "type": "object", "additionalProperties": false, "required": ["providerId", "status", "retryable"],
+      "properties": { "providerId": { "type": "string", "minLength": 1 }, "status": { "enum": ["success", "rate_limited", "timeout", "failed"] }, "retryable": { "type": "boolean" }, "retryAfterSeconds": { "type": "integer", "minimum": 0 } }
+    },
+    "usage": {
+      "type": "object", "additionalProperties": false, "required": ["actualCostKrw", "simulated", "estimatedRequests", "estimatedCredits", "estimatedTokens"],
+      "properties": { "actualCostKrw": { "const": 0 }, "simulated": { "const": true }, "estimatedRequests": { "type": "integer", "minimum": 0 }, "estimatedCredits": { "type": "integer", "minimum": 0 }, "estimatedTokens": { "type": "integer", "minimum": 0 } }
+    }
+  }
+}
