@@ -205,6 +205,8 @@ def validate_research_result(value: object) -> dict[str, Any]:
             claim["claimId"] in claim_ids
             or not isinstance(claim["claimId"], str)
             or not claim["claimId"]
+            or not isinstance(claim["text"], str)
+            or not claim["text"]
         ):
             raise ResearchContractError("Claim identifiers must be unique and non-empty.")
         if claim["confidence"] not in {"low", "medium", "high"}:
@@ -222,6 +224,8 @@ def validate_research_result(value: object) -> dict[str, Any]:
         outcome = _strict(outcome, {"providerId", "status", "retryable"}, {"retryAfterSeconds"})
         if outcome["status"] not in {"success", "rate_limited", "timeout", "failed"}:
             raise ResearchContractError("Provider outcome status is invalid.")
+        if not isinstance(outcome["providerId"], str) or not outcome["providerId"]:
+            raise ResearchContractError("Provider identifier must be non-empty.")
         if not isinstance(outcome["retryable"], bool):
             raise ResearchContractError("Provider retryable must be boolean.")
         if "retryAfterSeconds" in outcome and (
@@ -238,14 +242,18 @@ def validate_research_result(value: object) -> dict[str, Any]:
     }
     if any(warning not in allowed_warnings for warning in record["warnings"]):
         raise ResearchContractError("Research warning is invalid.")
+    if len(set(record["warnings"])) != len(record["warnings"]):
+        raise ResearchContractError("Research warnings must be unique.")
     usage = _strict(
         record["usage"],
         {"actualCostKrw", "simulated", "estimatedRequests", "estimatedCredits", "estimatedTokens"},
     )
-    if usage["actualCostKrw"] != 0 or usage["simulated"] is not True:
+    if type(usage["actualCostKrw"]) is not int or usage["actualCostKrw"] != 0:
+        raise ResearchContractError("Mock actual cost must be integer zero.")
+    if usage["simulated"] is not True:
         raise ResearchContractError("Mock usage must have zero actual cost and be simulated.")
     if any(
-        not isinstance(usage[key], int) or usage[key] < 0
+        type(usage[key]) is not int or usage[key] < 0
         for key in ("estimatedRequests", "estimatedCredits", "estimatedTokens")
     ):
         raise ResearchContractError("Simulated usage values must be non-negative integers.")

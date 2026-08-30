@@ -79,6 +79,8 @@ def test_invalid_reference_duplicate_id_version_and_unknown_field_are_rejected()
         {**valid, "schemaVersion": "aioffice.research.v0"},
         {**valid, "unexpected": True},
         {**valid, "sources": [valid["sources"][0], valid["sources"][0]]},
+        {**valid, "warnings": ["stale_source", "stale_source"]},
+        {**valid, "usage": {**valid["usage"], "actualCostKrw": False}},
     ):
         with pytest.raises(ResearchContractError):
             validate_research_result(changed)
