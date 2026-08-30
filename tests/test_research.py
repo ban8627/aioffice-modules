@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import cast
 
 import pytest
 
@@ -94,3 +95,68 @@ def test_unbacked_claim_is_not_rendered_as_fact() -> None:
     timeout, markdown = run_mock_research(request("timeout"))
     assert timeout["claims"] == []
     assert "No evidence-backed claim available" in markdown
+
+
+def load_fixture(name: str) -> dict[str, object]:
+    return cast(
+        dict[str, object],
+        json.loads(Path(f"contracts/fixtures/{name}.json").read_text(encoding="utf-8")),
+    )
+
+
+@pytest.mark.parametrize(
+    ("name", "scenario"),
+    [
+        ("research-success", "success"),
+        ("research-rate-limited", "rate_limited"),
+        ("research-timeout", "timeout"),
+        ("research-stale-source", "stale_source"),
+        ("research-source-conflict", "source_conflict"),
+        ("research-partial", "partial"),
+    ],
+)
+def test_valid_scenario_fixture_matches_deterministic_pipeline(name: str, scenario: str) -> None:
+    fixture = load_fixture(name)
+    generated, _ = run_mock_research(request(scenario))
+    assert canonical_json(fixture) == canonical_json(generated)
+    validate_research_result(fixture)
+
+
+@pytest.mark.parametrize(
+    ("name", "reason"),
+    [
+        ("research-invalid-reference", "unknown or duplicate evidence"),
+        ("research-duplicate-id", "Source identifiers must be unique"),
+        ("research-version-mismatch", "Unsupported research schema version"),
+    ],
+)
+def test_invalid_fixture_is_rejected_for_expected_reason(name: str, reason: str) -> None:
+    with pytest.raises(ResearchContractError, match=reason):
+        validate_research_result(load_fixture(name))
+
+
+def test_simulated_usage_fixture_is_valid_and_has_zero_actual_cost() -> None:
+    fixture = load_fixture("research-simulated-usage")
+    validate_research_result(fixture)
+    usage = fixture["usage"]
+    assert isinstance(usage, dict)
+    assert usage == {
+        "actualCostKrw": 0,
+        "estimatedCredits": 5,
+        "estimatedRequests": 4,
+        "estimatedTokens": 600,
+        "simulated": True,
+    }
+
+
+def test_fixtures_are_synthetic_and_pipeline_has_no_network_client() -> None:
+    for path in Path("contracts/fixtures").glob("research-*.json"):
+        text = path.read_text(encoding="utf-8")
+        assert 'actualCostKrw":0' in text
+        for locator in [value for value in json.loads(text).get("sources", [])]:
+            assert locator["locator"].startswith("https://")
+            assert ".test/" in locator["locator"]
+    source = Path("src/aioffice_modules/research.py").read_text(encoding="utf-8")
+    assert "urlopen(" not in source
+    assert "requests." not in source
+    assert "httpx." not in source
