@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aioffice.local/schemas/research-request.schema.json",
+  "title": "ResearchRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "requestId", "taskId", "kind", "question", "createdAt", "scenario"],
+  "properties": {
+    "schemaVersion": { "const": "aioffice.research.v1" },
+    "requestId": { "type": "string", "minLength": 1 },
+    "taskId": { "type": "string", "minLength": 1 },
+    "kind": { "enum": ["investment_research", "general_research"] },
+    "question": { "type": "string", "minLength": 1 },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "scenario": { "enum": ["success", "rate_limited", "timeout", "stale_source", "source_conflict", "partial"] }
+  }
+}
