@@ -16,7 +16,8 @@ This repository is intended to hold module designs for:
 - Gate 1 repository bootstrap: PASS.
 - Technology stack: approved, see `docs/adr/0001-approved-stack.md`.
 - Gate 1 implementation: COMPLETE, merged to main on 2026-08-28.
-- Gate 2 research planning: in progress, see `docs/gate2-plan.md`.
+- Gate 2 research implementation: COMPLETE, merged to main on 2026-08-30.
+- Gate 3 official economic and disclosure data planning: in progress, see `docs/gate3-plan.md`.
 
 ## Public Repository Safety
 
@@ -39,10 +40,16 @@ Example configuration, when later approved, must use fictional values and schema
 - `AI_Office_requirements_review_v0.22.md`
 - `AIOffice_Gate1_Codex_handoff.md`
 
-### Current Gate 2 Basis
+### Gate 2 Historical Basis
 
 - `AI_Office_requirements_review_v0.23.md`
 - `AIOffice_Gate2_Codex_handoff.md`
 - `docs/gate2-plan.md`
+- `docs/gate2-mock-implementation.md`
+
+### Current Gate 3 Basis
+
+- `docs/gate3-plan.md`
+- Official FRED, ECOS, and OpenDART documentation linked from that plan
 
 No open source license is granted in this repository unless the owner later approves one explicitly.

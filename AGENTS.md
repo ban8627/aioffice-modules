@@ -6,9 +6,9 @@ This repository covers AIOffice domain modules: investment research, general res
 
 ## Current Gate
 
-Gate 1 is complete and merged to `main`. Gate 2 is in investment and general research planning and provider approval preparation.
+Gate 2 research contracts and the deterministic mock pipeline are complete and merged to `main`.
 
-During Gate 2 planning, keep changes document-only unless the user explicitly approves implementation. Do not add application code, dependencies, external API calls, deployment configuration, database migrations, secrets, or real account data.
+Gate 3 planning covers provider-neutral boundaries for FRED, Bank of Korea ECOS, and OpenDART. The current Gate 3 checkpoint is document-only. Do not add live provider clients, credentials, dependencies, external API calls, database access, deployment configuration, or real data until the applicable implementation and credential approvals are recorded.
 
 ## Safety Rules
 
